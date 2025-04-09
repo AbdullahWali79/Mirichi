@@ -20,15 +20,43 @@ body {
 #start-screen {
   text-align: center;
   padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 #start-screen h1 {
   font-size: 2.5rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 #high-score {
   margin: 20px 0;
   font-size: 1.5rem;
+}
+
+.difficulty-selector {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.difficulty-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.difficulty-btn.active {
+  background: white;
+  color: #2e7d32;
+  transform: scale(1.1);
 }
 
 button {
@@ -42,6 +70,12 @@ button {
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
 #game-container {
@@ -54,8 +88,10 @@ button {
 #header {
   display: flex;
   justify-content: space-around;
-  padding: 10px;
+  padding: 15px;
   font-size: 1.2rem;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
 }
 
 #mirchi-container {
@@ -73,6 +109,11 @@ button {
   animation: fall 4s linear forwards;
   user-select: none;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.mirchi:hover {
+  transform: scale(1.2);
 }
 
 .bomb {
@@ -91,6 +132,14 @@ button {
   align-items: center;
   flex-direction: column;
   text-align: center;
+  backdrop-filter: blur(5px);
+}
+
+#game-over h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ff5252;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes fall {
@@ -101,4 +150,22 @@ button {
 @keyframes shake {
   0% { transform: rotate(-5deg); }
   100% { transform: rotate(5deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  #start-screen h1 {
+    font-size: 2rem;
+  }
+  
+  .difficulty-selector {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
 }
