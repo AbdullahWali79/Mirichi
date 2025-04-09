@@ -10,6 +10,8 @@ const gameOverScreen = document.getElementById("game-over");
 const highScoreDisplay = document.querySelector("#high-score span");
 const highScoreEndDisplay = document.getElementById("high-score-end");
 const difficultyDisplay = document.querySelector("#difficulty-display span");
+const keyboardCursor = document.getElementById("keyboard-cursor");
+const pauseScreen = document.getElementById("pause-screen");
 
 // Sound effects
 const clickSound = document.getElementById("click-sound");
@@ -29,8 +31,14 @@ let timeLeft = 30;
 let timer;
 let spawnInterval;
 let gameRunning = false;
+let isPaused = false;
 let highScore = localStorage.getItem("mirchiHighScore") || 0;
 highScoreDisplay.textContent = highScore;
+
+// Keyboard cursor position
+let cursorX = window.innerWidth / 2;
+let cursorY = window.innerHeight / 2;
+let selectedMirchi = null;
 
 // Difficulty selection
 document.querySelectorAll('.difficulty-btn').forEach(btn => {
@@ -45,16 +53,115 @@ document.querySelectorAll('.difficulty-btn').forEach(btn => {
 startBtn.onclick = startGame;
 restartBtn.onclick = startGame;
 
+// Keyboard controls
+document.addEventListener('keydown', handleKeyPress);
+
+function handleKeyPress(e) {
+    if (e.key === ' ' && !gameRunning) {
+        startGame();
+    } else if (e.key === ' ' && isPaused) {
+        resumeGame();
+    } else if (e.key === 'Escape' && gameRunning && !isPaused) {
+        pauseGame();
+    } else if (gameRunning && !isPaused) {
+        switch(e.key) {
+            case 'ArrowLeft':
+                cursorX = Math.max(0, cursorX - 20);
+                break;
+            case 'ArrowRight':
+                cursorX = Math.min(window.innerWidth, cursorX + 20);
+                break;
+            case 'ArrowUp':
+                cursorY = Math.max(0, cursorY - 20);
+                break;
+            case 'ArrowDown':
+                cursorY = Math.min(window.innerHeight, cursorY + 20);
+                break;
+            case 'Enter':
+                if (selectedMirchi) {
+                    selectedMirchi.click();
+                }
+                break;
+        }
+        updateCursor();
+        checkMirchiSelection();
+    }
+}
+
+function updateCursor() {
+    keyboardCursor.style.left = `${cursorX - 15}px`;
+    keyboardCursor.style.top = `${cursorY - 15}px`;
+}
+
+function checkMirchiSelection() {
+    const mirchis = document.querySelectorAll('.mirchi');
+    let newSelected = null;
+    let minDistance = 50; // Minimum distance to select a mirchi
+
+    mirchis.forEach(mirchi => {
+        const rect = mirchi.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const distance = Math.sqrt(
+            Math.pow(centerX - cursorX, 2) + 
+            Math.pow(centerY - cursorY, 2)
+        );
+
+        if (distance < minDistance) {
+            minDistance = distance;
+            newSelected = mirchi;
+        }
+    });
+
+    if (selectedMirchi) {
+        selectedMirchi.classList.remove('keyboard-selected');
+    }
+
+    if (newSelected) {
+        newSelected.classList.add('keyboard-selected');
+        selectedMirchi = newSelected;
+    } else {
+        selectedMirchi = null;
+    }
+}
+
+function pauseGame() {
+    isPaused = true;
+    clearInterval(timer);
+    clearInterval(spawnInterval);
+    pauseScreen.style.display = "flex";
+}
+
+function resumeGame() {
+    isPaused = false;
+    pauseScreen.style.display = "none";
+    timer = setInterval(() => {
+        timeLeft--;
+        updateDisplay();
+        if (timeLeft <= 0) endGame();
+    }, 1000);
+
+    const settings = difficulties[currentDifficulty];
+    spawnInterval = setInterval(spawnMirchi, settings.spawnRate);
+}
+
 function startGame() {
     score = 0;
     timeLeft = 30;
     gameRunning = true;
+    isPaused = false;
     updateDisplay();
 
     startScreen.style.display = "none";
     gameContainer.style.display = "block";
     gameOverScreen.style.display = "none";
+    pauseScreen.style.display = "none";
     mirchiContainer.innerHTML = "";
+
+    // Reset cursor position
+    cursorX = window.innerWidth / 2;
+    cursorY = window.innerHeight / 2;
+    updateCursor();
 
     timer = setInterval(() => {
         timeLeft--;
@@ -87,7 +194,7 @@ function spawnMirchi() {
     el.style.transform = `scale(${size})`;
 
     el.addEventListener("click", () => {
-        if (!gameRunning) return;
+        if (!gameRunning || isPaused) return;
         if (isBomb) {
             bombSound.play();
             endGame();

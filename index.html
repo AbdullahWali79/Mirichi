@@ -12,7 +12,15 @@
         <h1>🌶️ Mirchi Tap Extreme 🌶️</h1>
         <p>Mirchi pe tap karo, bomb se bacho!</p>
         <div id="high-score">High Score: <span>0</span></div>
+        <div class="difficulty-selector">
+            <button class="difficulty-btn active" data-difficulty="easy">Easy</button>
+            <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+            <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+        </div>
         <button id="start-btn">START GAME</button>
+        <div class="controls-info">
+            <p>Controls: Space to Start | Arrow Keys to Move | Enter to Click | Esc to Pause</p>
+        </div>
     </div>
 
     <!-- Game Screen -->
@@ -20,15 +28,27 @@
         <div id="header">
             <div id="score">Score: <span>0</span></div>
             <div id="timer">Time: <span>30</span>s</div>
+            <div id="difficulty-display">Difficulty: <span>Easy</span></div>
         </div>
         <div id="mirchi-container"></div>
+        <div id="keyboard-cursor"></div>
         <div id="game-over">
             <h2>Game Over!</h2>
             <p>Your Score: <span id="final-score">0</span></p>
             <p>High Score: <span id="high-score-end">0</span></p>
             <button id="restart-btn">Play Again</button>
         </div>
+        <div id="pause-screen">
+            <h2>Game Paused</h2>
+            <p>Press Space to Continue</p>
+        </div>
     </div>
+
+    <!-- Audio Elements -->
+    <audio id="click-sound" src="https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3"></audio>
+    <audio id="bomb-sound" src="https://assets.mixkit.co/active_storage/sfx/2579/2579-preview.mp3"></audio>
+    <audio id="game-over-sound" src="https://assets.mixkit.co/active_storage/sfx/2578/2578-preview.mp3"></audio>
+    
     <script src="Script.js"></script>
 </body>
 </html>
