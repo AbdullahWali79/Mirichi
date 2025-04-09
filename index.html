@@ -1,22 +1,34 @@
-<!-- Start Screen -->
-<div id="start-screen">
-  <h1>🌶️ Mirchi Tap Extreme 🌶️</h1>
-  <p>Mirchi pe tap karo, bomb se bacho!</p>
-  <div id="high-score">High Score: <span>0</span></div>
-  <button id="start-btn">START GAME</button>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirchi Tap Extreme</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <!-- Start Screen -->
+    <div id="start-screen">
+        <h1>🌶️ Mirchi Tap Extreme 🌶️</h1>
+        <p>Mirchi pe tap karo, bomb se bacho!</p>
+        <div id="high-score">High Score: <span>0</span></div>
+        <button id="start-btn">START GAME</button>
+    </div>
 
-<!-- Game Screen -->
-<div id="game-container">
-  <div id="header">
-    <div id="score">Score: <span>0</span></div>
-    <div id="timer">Time: <span>30</span>s</div>
-  </div>
-  <div id="mirchi-container"></div>
-  <div id="game-over">
-    <h2>Game Over!</h2>
-    <p>Your Score: <span id="final-score">0</span></p>
-    <p>High Score: <span id="high-score-end">0</span></p>
-    <button id="restart-btn">Play Again</button>
-  </div>
-</div>
+    <!-- Game Screen -->
+    <div id="game-container">
+        <div id="header">
+            <div id="score">Score: <span>0</span></div>
+            <div id="timer">Time: <span>30</span>s</div>
+        </div>
+        <div id="mirchi-container"></div>
+        <div id="game-over">
+            <h2>Game Over!</h2>
+            <p>Your Score: <span id="final-score">0</span></p>
+            <p>High Score: <span id="high-score-end">0</span></p>
+            <button id="restart-btn">Play Again</button>
+        </div>
+    </div>
+    <script src="Script.js"></script>
+</body>
+</html>
