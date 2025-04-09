@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom right, #1b5e20, #4caf50);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+}
+
+/* Start Screen */
+#start-screen {
+  text-align: center;
+  padding: 20px;
+}
+
+#start-screen h1 {
+  font-size: 2.5rem;
+}
+
+#high-score {
+  margin: 20px 0;
+  font-size: 1.5rem;
+}
+
+button {
+  background: white;
+  color: #2e7d32;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-top: 10px;
+}
+
+#game-container {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+#header {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  font-size: 1.2rem;
+}
+
+#mirchi-container {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.mirchi {
+  position: absolute;
+  font-size: 2rem;
+  animation: fall 4s linear forwards;
+  user-select: none;
+  cursor: pointer;
+}
+
+.bomb {
+  animation: fall 4s linear forwards, shake 0.5s infinite;
+}
+
+#game-over {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+@keyframes fall {
+  from { top: -60px; }
+  to { top: 100vh; }
+}
+
+@keyframes shake {
+  0% { transform: rotate(-5deg); }
+  100% { transform: rotate(5deg); }
+}
