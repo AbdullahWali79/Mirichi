@@ -7,6 +7,88 @@
     <link rel="stylesheet" href="Style.css">
 </head>
 <body>
+    <!-- Main Menu -->
+    <div id="main-menu">
+        <h1>🌶️ Mirchi Tap Extreme 🌶️</h1>
+        <div class="menu-buttons">
+            <button id="play-btn">Play Game</button>
+            <button id="settings-btn">Settings</button>
+            <button id="how-to-play-btn">How to Play</button>
+            <button id="achievements-btn">Achievements</button>
+            <button id="stats-btn">Statistics</button>
+            <button id="credits-btn">Credits</button>
+        </div>
+    </div>
+
+    <!-- Settings Menu -->
+    <div id="settings-menu">
+        <h2>Settings</h2>
+        <div class="settings-options">
+            <div class="setting-item">
+                <label>Sound Effects</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="sound-toggle" checked>
+                    <span class="toggle-slider"></span>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Vibration</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="vibration-toggle" checked>
+                    <span class="toggle-slider"></span>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Dark Mode</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="dark-mode-toggle">
+                    <span class="toggle-slider"></span>
+                </div>
+            </div>
+        </div>
+        <button class="back-btn">Back to Menu</button>
+    </div>
+
+    <!-- How to Play Menu -->
+    <div id="how-to-play-menu">
+        <h2>How to Play</h2>
+        <div class="instructions">
+            <div class="instruction-item">
+                <span class="emoji">🌶️</span>
+                <p>Tap the mirchis to score points</p>
+            </div>
+            <div class="instruction-item">
+                <span class="emoji">💣</span>
+                <p>Avoid the bombs or game over!</p>
+            </div>
+            <div class="instruction-item">
+                <span class="emoji">⏱️</span>
+                <p>Each mirchi gives you more time</p>
+            </div>
+            <div class="instruction-item">
+                <span class="emoji">🎮</span>
+                <p>Choose your difficulty level</p>
+            </div>
+        </div>
+        <button class="back-btn">Back to Menu</button>
+    </div>
+
+    <!-- Credits Menu -->
+    <div id="credits-menu">
+        <h2>Credits</h2>
+        <div class="credits-content">
+            <p>Created by: Your Name</p>
+            <p>Version: 1.0</p>
+            <p>Special Thanks to:</p>
+            <ul>
+                <li>All Players</li>
+                <li>Testers</li>
+                <li>Supporters</li>
+            </ul>
+        </div>
+        <button class="back-btn">Back to Menu</button>
+    </div>
+
     <!-- Start Screen -->
     <div id="start-screen">
         <h1>🌶️ Mirchi Tap Extreme 🌶️</h1>
@@ -21,6 +103,7 @@
         <div class="controls-info">
             <p>Controls: Space to Start | Arrow Keys to Move | Enter to Click | Esc to Pause</p>
         </div>
+        <button class="back-btn">Back to Menu</button>
     </div>
 
     <!-- Game Screen -->
@@ -29,6 +112,7 @@
             <div id="score">Score: <span>0</span></div>
             <div id="timer">Time: <span>30</span>s</div>
             <div id="difficulty-display">Difficulty: <span>Easy</span></div>
+            <button id="menu-btn">Menu</button>
         </div>
         <div id="mirchi-container"></div>
         <div id="keyboard-cursor"></div>
@@ -37,10 +121,12 @@
             <p>Your Score: <span id="final-score">0</span></p>
             <p>High Score: <span id="high-score-end">0</span></p>
             <button id="restart-btn">Play Again</button>
+            <button class="back-btn">Back to Menu</button>
         </div>
         <div id="pause-screen">
             <h2>Game Paused</h2>
             <p>Press Space to Continue</p>
+            <button class="back-btn">Back to Menu</button>
         </div>
     </div>
 
@@ -48,6 +134,7 @@
     <audio id="click-sound" src="https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3"></audio>
     <audio id="bomb-sound" src="https://assets.mixkit.co/active_storage/sfx/2579/2579-preview.mp3"></audio>
     <audio id="game-over-sound" src="https://assets.mixkit.co/active_storage/sfx/2578/2578-preview.mp3"></audio>
+    <audio id="menu-sound" src="https://assets.mixkit.co/active_storage/sfx/2574/2574-preview.mp3"></audio>
     
     <script src="Script.js"></script>
 </body>
